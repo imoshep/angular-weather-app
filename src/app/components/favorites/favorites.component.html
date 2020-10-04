@@ -1,1 +1,14 @@
-<p>favorites works!</p>
+<div *ngIf="favsArray[0]?.data" class="favorites">
+  <app-weather-card
+    *ngFor="let location of favsArray"
+    [weather]="location.data"
+  ></app-weather-card>
+</div>
+<div *ngIf="!favsArray[0]?.data && isLoading">
+  <img
+    src="https://imoshep-weather-app.s3.eu-central-1.amazonaws.com/loading.gif"
+    width="40"
+    alt="loading favorite locations"
+    class="preLoader"
+  />
+</div>

@@ -14,12 +14,14 @@
     />
     <button class="submit"><i class="fas fa-search"></i></button>
   </form>
-  <app-weather-card
-    *ngIf="searchResult.success"
-    [weather]="searchResult.data"
-  ></app-weather-card>
-  <h3 *ngIf="!searchResult.success">
-    Requested location not found,<br />
-    try another query
-  </h3>
+  <div *ngIf="searchResult">
+    <app-weather-card
+      *ngIf="searchResult?.success"
+      [weather]="searchResult.data"
+    ></app-weather-card>
+    <h3 *ngIf="!searchResult.success">
+      Requested location not found,<br />
+      try another query
+    </h3>
+  </div>
 </div>

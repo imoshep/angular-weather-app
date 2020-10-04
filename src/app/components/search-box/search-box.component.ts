@@ -1,4 +1,4 @@
-import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { Component } from '@angular/core';
 import { WeatherHttpResponse } from 'src/app/interfaces/http-response.interface';
 import { WeatherService } from '../../services/weather.service';
 

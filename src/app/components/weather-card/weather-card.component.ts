@@ -22,6 +22,9 @@ export class WeatherCardComponent implements OnInit, OnChanges {
   ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.weather) this.weatherLength = Object.keys(this.weather).length;
+    if (this.weather) {
+      if (changes.weather)
+        this.weatherLength = Object.keys(this.weather).length;
+    }
   }
 }

@@ -1,4 +1,5 @@
-background image
+Intervals on Favs and on searchbox (maybe try putting in o waethercard?)
+background image -- V
 fonts
 caret on weather-card
 check responsivity
