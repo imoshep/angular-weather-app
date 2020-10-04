@@ -1,0 +1,25 @@
+<div class="searchBox">
+  <form
+    #searchForm="ngForm"
+    (ngSubmit)="onSubmit(); $event.preventDefault()"
+    class="searchForm"
+  >
+    <label for="searchInput" class="label">WHAT'S THE WEATHER NOW IN</label>
+    <input
+      class="input"
+      type="text"
+      id="searchInput"
+      name="searchInput"
+      [(ngModel)]="searchInput"
+    />
+    <button class="submit"><i class="fas fa-search"></i></button>
+  </form>
+  <app-weather-card
+    *ngIf="searchResult.success"
+    [weather]="searchResult.data"
+  ></app-weather-card>
+  <h3 *ngIf="!searchResult.success">
+    Requested location not found,<br />
+    try another query
+  </h3>
+</div>

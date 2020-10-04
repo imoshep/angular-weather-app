@@ -1,0 +1,34 @@
+<div *ngIf="weatherLength > 0">
+  <!-- <span class={`${card} ${showDetails ? 'show' : ''}`}
+  (click)="toggleShowMore()"> -->
+  <span class="card" [class.show]="showDetails" (click)="toggleShowMore()">
+    <div class="topRow">
+      <div class="iconTemp">
+        <img
+          [src]="weather.iconSrc"
+          [alt]="weather.iconSrc | parseAlt"
+          class="image"
+        />
+        <span class="tempDeg">
+          <span class="deg">&deg;C</span>
+          <span class="temp">{{ weather.currentTempCelsius }}</span>
+        </span>
+      </div>
+      <div class="locTimeTxt">
+        <span class="location">{{ weather.location }}</span>
+        <span class="time">{{ weather.sampledAtDayHour }}</span>
+        <span class="text">{{ weather.verbalDesc }}</span>
+      </div>
+      <!-- {!isMD &&
+      <div class="caret"><i class="fas fa-angle-down"></i></div>
+      } -->
+    </div>
+    <div class="moreDetailes">
+      <span class="percipitation"
+        >Precipitation:&nbsp;{{ weather.precipitation }}</span
+      >
+      <span class="humidity">Humidity:&nbsp;{{ weather.humidity }}</span>
+      <div class="wind">Wind Velocity:&nbsp;{{ weather.windSpeed }}</div>
+    </div>
+  </span>
+</div>
