@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { WeatherHttpResponse } from 'src/app/interfaces/http-response.interface';
 import { WeatherService } from '../../services/weather.service';
 
@@ -8,14 +9,13 @@ import { WeatherService } from '../../services/weather.service';
   templateUrl: './search-box.component.html',
   styleUrls: ['./search-box.component.scss'],
 })
-export class SearchBoxComponent {
+export class SearchBoxComponent implements OnDestroy {
   constructor(private weatherService: WeatherService) {}
   searchInput: string = '';
   searchResult: WeatherHttpResponse;
-  weatherLength: number;
+  searchSubscription: Subscription;
 
   onSubmit() {
-    // if (interval) clearInterval(interval);
     this.weatherService.getWeather(this.searchInput).subscribe(
       (response: WeatherHttpResponse) => {
         this.searchResult = { ...response };
@@ -24,9 +24,9 @@ export class SearchBoxComponent {
         this.searchResult = { ...error.error };
       }
     );
-    // interval = setInterval(async () => {
-    //   response = await getWeather(inputValue);
-    //   setSearchResult({ ...response });
-    // }, 300000);
+  }
+
+  ngOnDestroy(): void {
+    this.searchSubscription.unsubscribe();
   }
 }
