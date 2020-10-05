@@ -2,7 +2,10 @@
   <!-- <span class={`${card} ${showDetails ? 'show' : ''}`}
   (click)="toggleShowMore()"> -->
   <!-- <span class="card" [class.show]="showDetails" (click)="toggleShowMore()"> -->
-  <span class="card">
+  <span
+    [ngClass]="{ card: true, show: showDetails }"
+    (click)="toggleShowMore()"
+  >
     <div class="topRow">
       <div class="iconTemp">
         <img
@@ -20,9 +23,7 @@
         <span class="time">{{ weather.sampledAtDayHour }}</span>
         <span class="text">{{ weather.verbalDesc }}</span>
       </div>
-      <!-- {!isMD &&
-      <div class="caret"><i class="fas fa-angle-down"></i></div>
-      } -->
+      <div *ngIf="isXS" class="caret"><i class="fas fa-angle-down"></i></div>
     </div>
     <div class="moreDetailes">
       <span class="percipitation"

@@ -11,6 +11,7 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import { WeatherCardComponent } from './components/weather-card/weather-card.component';
 import { ParseAltPipe } from './pipes/parse-alt.pipe';
+import { DetectScreenSizeDirective } from './directives/detect-screen-size.directive';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ParseAltPipe } from './pipes/parse-alt.pipe';
     FavoritesComponent,
     WeatherCardComponent,
     ParseAltPipe,
+    DetectScreenSizeDirective,
   ],
   imports: [BrowserModule, FormsModule, HttpClientModule],
   providers: [ParseAltPipe],

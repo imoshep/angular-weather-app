@@ -12,7 +12,6 @@ import { WeatherHttpResponse } from '../interfaces/http-response.interface';
 export class WeatherService {
   constructor(private http: HttpClient) {}
   getWeather(location: String): Observable<WeatherHttpResponse> {
-    console.log('service running, location: ', location);
     return this.http.get<WeatherHttpResponse>(
       `${environment.apiUrl}/google?location=${location}`
     );

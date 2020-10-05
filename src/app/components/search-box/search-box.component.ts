@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { WeatherHttpResponse } from 'src/app/interfaces/http-response.interface';
 import { WeatherService } from '../../services/weather.service';
@@ -19,7 +20,7 @@ export class SearchBoxComponent {
       (response: WeatherHttpResponse) => {
         this.searchResult = { ...response };
       },
-      (error) => {
+      (error: HttpErrorResponse) => {
         this.searchResult = { ...error.error };
       }
     );

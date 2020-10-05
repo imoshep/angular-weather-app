@@ -1,5 +1,44 @@
 Intervals on Favs and on searchbox (maybe try putting in o waethercard?)
 background image -- V
-fonts
-caret on weather-card
+fonts -- V
+caret on weather-card --V
 check responsivity
+
+WHAT I WANT
+
+if (screenWidth < 576px) show caret
+if (screenWidth > 576px) hide caret
+
+
+
+detect screen size:
+1)  https://stackoverflow.com/questions/45350716/detecting-real-time-window-size-changes-in-angular-4
+    To get it on init
+
+    public innerWidth: any;
+    ngOnInit() {
+        this.innerWidth = window.innerWidth;
+    }
+    If you wanna keep it updated on resize:
+
+    @HostListener('window:resize', ['$event'])
+    onResize(event) {
+      this.innerWidth = window.innerWidth;
+    }
+
+    this.innerWidth = event.target.innerWidth; ... is possibly more efficient, produces the same result – danday74 Nov 12 '18 at 8:47
+
+    Also recommend this in the constructor if you are using lodash ... this.onResize = debounce(this.onResize, 150, {leading: false, trailing: true}) ... to prevent the onResize method being called too frequently ... you will need to ... import { debounce } from 'lodash' – danday74 Nov 12 '18 at 8:53
+    I think preferred to use ngAfterViewInit life hook method instead of ngOnInit life hook method
+
+
+2)  https://www.digitalocean.com/community/tutorials/detect-responsive-screen-sizes-in-angular
+    https://stackblitz.com/edit/angular-size?file=src%2Fapp%2Fhello.component.ts
+
+
+3)  https://cloudengineering.studio/articles/combine-power-angular-services-directives-to-detect-screen-size-changes
+    @HostListener('window:resize', ['$event']) onResize(event) {}
+    directive -> service -> subscription on component
+
+4)  https://stackoverflow.com/questions/39888768/how-to-get-height-and-width-of-device-display-in-angular2-using-typescript
+    @HostListener
