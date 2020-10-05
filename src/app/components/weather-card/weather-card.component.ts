@@ -22,7 +22,7 @@ export class WeatherCardComponent implements OnInit, OnChanges, OnDestroy {
   weatherLength: number;
   showDetails: boolean = false;
   isXS: boolean;
-  subscription: Subscription;
+  screenSizeSubscription: Subscription;
   constructor(private screenSizeSvc: ScreenSizeService) {}
 
   toggleShowMore() {
@@ -30,7 +30,7 @@ export class WeatherCardComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.subscription = this.screenSizeSvc.screenSize
+    this.screenSizeSubscription = this.screenSizeSvc.screenSize
       .pipe(distinctUntilChanged())
       .subscribe((size) => {
         if (size === 'XS') this.isXS = true;
@@ -46,6 +46,6 @@ export class WeatherCardComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.screenSizeSubscription.unsubscribe();
   }
 }
