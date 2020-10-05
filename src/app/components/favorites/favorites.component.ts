@@ -1,8 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { fromEvent, interval, timer } from 'rxjs';
-import { concatMap, take } from 'rxjs/operators';
-import { WeatherHttpResponse } from 'src/app/interfaces/http-response.interface';
+import { Component, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs/operators';
 import { LocationInterface } from 'src/app/interfaces/location.interface.ts';
+import { ScreenSizeService } from 'src/app/services/screen-size.service';
 import { WeatherService } from '../../services/weather.service';
 
 @Component({
@@ -16,8 +16,13 @@ export class FavoritesComponent implements OnInit, OnDestroy {
     { name: 'berlin' },
   ];
   isLoading = false;
+  isXS: boolean;
+  screenSizeSubscription: Subscription;
 
-  constructor(private weatherService: WeatherService) {}
+  constructor(
+    private weatherService: WeatherService,
+    private screenSizeSvc: ScreenSizeService
+  ) {}
 
   populateData() {
     this.isLoading = true;
@@ -38,8 +43,18 @@ export class FavoritesComponent implements OnInit, OnDestroy {
     });
   }
 
+  getScreenSize() {
+    this.screenSizeSubscription = this.screenSizeSvc.screenSize
+      .pipe(distinctUntilChanged())
+      .subscribe((size) => {
+        if (size === 'XS') this.isXS = true;
+        else this.isXS = false;
+      });
+  }
+
   ngOnInit(): void {
     this.populateData();
+    this.getScreenSize();
   }
 
   ngOnDestroy(): void {

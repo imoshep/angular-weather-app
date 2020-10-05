@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { shareReplay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,7 @@ export class ScreenSizeService {
     if (768 < width && width < 992) this.screenSize.next('MD');
     if (992 < width && width < 1200) this.screenSize.next('LG');
     if (1200 < width) this.screenSize.next('XL');
+
     return this.screenSize;
   }
 }

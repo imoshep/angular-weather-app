@@ -2,6 +2,7 @@
   <app-weather-card
     *ngFor="let location of favsArray"
     [weather]="location.data"
+    [isXS]="isXS"
   ></app-weather-card>
 </div>
 <div *ngIf="!favsArray[0]?.data && isLoading">

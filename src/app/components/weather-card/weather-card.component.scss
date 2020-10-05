@@ -16,7 +16,7 @@
   @include respond(sm) {
     min-width: 19rem;
     max-width: 26rem;
-    max-height: 24rem;
+    max-height: 12rem;
   }
 
   @include respond(md) {

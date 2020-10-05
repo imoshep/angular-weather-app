@@ -7,7 +7,6 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { distinctUntilChanged } from 'rxjs/operators';
 import { Weather } from 'src/app/interfaces/weather.interface';
 import { ScreenSizeService } from 'src/app/services/screen-size.service';
 
@@ -18,10 +17,11 @@ import { ScreenSizeService } from 'src/app/services/screen-size.service';
 })
 export class WeatherCardComponent implements OnInit, OnChanges, OnDestroy {
   @Input() weather: Weather;
+  @Input() isXS: boolean;
 
   weatherLength: number;
   showDetails: boolean = false;
-  isXS: boolean;
+
   screenSizeSubscription: Subscription;
   constructor(private screenSizeSvc: ScreenSizeService) {}
 
@@ -29,14 +29,7 @@ export class WeatherCardComponent implements OnInit, OnChanges, OnDestroy {
     this.showDetails = !this.showDetails;
   }
 
-  ngOnInit(): void {
-    this.screenSizeSubscription = this.screenSizeSvc.screenSize
-      .pipe(distinctUntilChanged())
-      .subscribe((size) => {
-        if (size === 'XS') this.isXS = true;
-        else this.isXS = false;
-      });
-  }
+  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.weather) {
